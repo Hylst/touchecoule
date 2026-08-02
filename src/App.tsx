@@ -40,6 +40,7 @@ export default function App() {
   // audio toggles
   const [musicMuted, setMusicMuted] = useState(sound.getMusicMuted());
   const [sfxMuted, setSfxMuted] = useState(sound.getSfxMuted());
+  const [showInfo, setShowInfo] = useState(false);
 
   // placement state
   const [playerShips, setPlayerShips] = useState<PlacedShip[]>([]);
@@ -594,9 +595,36 @@ export default function App() {
                   {sfxMuted ? "SFX OFF" : "SFX ON"}
                 </span>
               </button>
+              <button
+                onClick={() => setShowInfo(true)}
+                title="Comment ce jeu a été fait"
+                className="p-2.5 rounded-xl border border-slate-700 bg-[#06182c]/80 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/40 transition-all flex items-center justify-center font-mono text-xs gap-1"
+              >
+                <span>ℹ️</span>
+                <span className="hidden md:inline">Infos</span>
+              </button>
             </div>
           </div>
         </header>
+
+        {showInfo && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4" onClick={() => setShowInfo(false)}>
+            <div className="w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl glass-panel border border-cyan-500/30 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              <div className="p-6 space-y-3.5 text-sm leading-relaxed text-slate-300">
+                <h3 className="text-xl font-black bg-gradient-to-r from-cyan-300 via-blue-200 to-indigo-300 bg-clip-text text-transparent">Comment ce jeu a été fait</h3>
+                <p><strong className="text-white">Stack :</strong> React 19, TypeScript 5.9, Tailwind CSS 4, Vite 7, compilé en un seul fichier HTML, aucune dépendance chargée depuis l'extérieur.</p>
+                <p><strong className="text-white">Graphismes :</strong> grilles de placement et de combat en DOM/CSS, aucun Canvas.</p>
+                <p><strong className="text-white">Musique &amp; sons :</strong> synthétisés en direct avec l'API Web Audio, aucun fichier audio chargé.</p>
+                <p><strong className="text-white">Interactions :</strong> clic pour placer sa flotte (touche R pour pivoter) puis pour tirer, boutons d'armement pour changer d'arme active.</p>
+                <p><strong className="text-white">Architecture :</strong> logique de jeu pure (<code>game.ts</code>) totalement indépendante du rendu, placement et tirs traités sans muter l'état d'entrée.</p>
+                <p><strong className="text-white">Algorithmes notables :</strong> 3 niveaux d'IA — Facile (aléatoire), Normal (chasse en croix puis suivi de ligne après un tir réussi), Amiral (carte de densité de probabilité : simule tous les placements de navires restants possibles et vise la case la plus probable). 4 armements dont la torpille qui file en ligne droite depuis la case visée jusqu'à toucher quelque chose.</p>
+              </div>
+              <div className="border-t border-cyan-500/20 p-4 text-center">
+                <button onClick={() => setShowInfo(false)} className="px-6 py-2.5 rounded-xl font-black text-[#05182e] bg-gradient-to-r from-cyan-400 to-blue-400 hover:brightness-110 active:scale-95 transition-all">Fermer</button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Phase Container */}
         <main className="transition-all duration-300">
