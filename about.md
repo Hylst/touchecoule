@@ -28,5 +28,5 @@ définitivement détruit.
 
 ## Contact
 
-- Email : geoffroy.streit@gmail.com
+- Email : geoffroy.streit@ik.me
 - Plateforme : [games.hylst.fr](https://games.hylst.fr/)
