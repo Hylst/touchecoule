@@ -680,7 +680,7 @@ export default function App() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs font-mono text-cyan-300/70">
           <span>créateur de l'app :</span>
           <span className="font-bold text-cyan-300 tracking-wider px-2 py-0.5 bg-cyan-950/60 rounded border border-cyan-500/40 shadow-[0_0_10px_rgba(0,240,255,0.2)]">
-            Hylst - Geoffroy
+            Geoffroy Streit (Hylst) avec l'aide d'une IA
           </span>
           <span className="hidden sm:inline">•</span>
           <span className="text-slate-500">
